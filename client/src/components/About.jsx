@@ -21,6 +21,14 @@ const About = () => {
             description: "GPA: 8.72",
             color: "text-purple-400",
             borderColor: "group-hover:border-purple-500/50"
+        },
+        {
+            degree: "Schooling",
+            institution: "Narayana e-techno School",
+            year: "2015 - 2021",
+            description: "Completed secondary education.",
+            color: "text-teal-400",
+            borderColor: "group-hover:border-teal-500/50"
         }
     ];
 
@@ -34,10 +42,10 @@ const About = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        <div className="flex justify-center mb-12">
+                        <div className="flex justify-center mb-16">
                             <Reveal>
-                                <h2 className="text-3xl md:text-5xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500">
-                                    About Me
+                                <h2 className="text-4xl md:text-5xl font-bold text-center outfit-font tracking-tight">
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">About</span> Me
                                 </h2>
                             </Reveal>
                         </div>
@@ -46,12 +54,13 @@ const About = () => {
                             {/* Personal Info */}
                             <div className="space-y-8">
                                 <Reveal>
-                                    <div className="bg-slate-900/50 backdrop-blur-md p-8 rounded-2xl border border-white/10 shadow-xl">
-                                        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                                            I am an <span className="text-teal-400 font-semibold">Aspiring Software Developer</span> pursuing a degree in Computer Science & Engineering.
+                                    <div className="glass-panel glass-panel-hover p-8 md:p-10 rounded-3xl relative overflow-hidden group">
+                                        <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                                        <p className="text-slate-300 text-lg md:text-xl leading-relaxed mb-6 font-light relative z-10">
+                                            I am an <span className="text-teal-400 font-medium tracking-wide">Aspiring Software Developer</span> pursuing a degree in Computer Science & Engineering.
                                             I have hands-on experience in front-end web technologies and strong project management abilities.
                                         </p>
-                                        <p className="text-gray-300 text-lg leading-relaxed">
+                                        <p className="text-slate-300 text-lg md:text-xl leading-relaxed font-light relative z-10">
                                             Equipped with a problem-solving mindset, adaptability, and a passion for building practical,
                                             user-focused, and innovative solutions. I bridge the gap between complex technology and real-world impact.
                                         </p>
@@ -60,10 +69,12 @@ const About = () => {
                             </div>
 
                             {/* Education Section */}
-                            <div className="space-y-6">
+                            <div className="space-y-8">
                                 <Reveal>
-                                    <h3 className="text-2xl font-bold mb-6 flex items-center gap-2 text-white">
-                                        <GraduationCap className="text-teal-400" size={28} />
+                                    <h3 className="text-3xl font-bold flex items-center gap-3 text-white outfit-font">
+                                        <div className="p-3 bg-white/5 border border-white/10 rounded-xl text-teal-400 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
+                                            <GraduationCap size={28} strokeWidth={1.5} />
+                                        </div>
                                         Education
                                     </h3>
                                 </Reveal>
@@ -71,20 +82,25 @@ const About = () => {
                                 <div className="grid gap-6">
                                     {education.map((edu, index) => (
                                         <Reveal width="100%" key={index}>
-                                            <div className={`group bg-slate-900/50 backdrop-blur-md p-6 rounded-2xl border border-white/10 transition-all duration-300 hover:-translate-y-1 shadow-lg ${edu.borderColor}`}>
-                                                <div className="flex justify-between items-start mb-2">
-                                                    <h4 className="text-xl font-bold text-white group-hover:text-teal-400 transition-colors">
+                                            <motion.div
+                                                whileHover={{ scale: 1.02, transition: { duration: 0.3, ease: "easeOut" } }}
+                                                className={`group glass-panel glass-panel-hover p-7 rounded-2xl transition-all duration-300 relative overflow-hidden border-l-4 ${edu.borderColor.replace('group-hover:', '')}`}
+                                                style={{ borderLeftColor: edu.color.includes('teal') ? '#2dd4bf' : edu.color.includes('purple') ? '#c084fc' : '#60a5fa' }}
+                                            >
+                                                <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                                                <div className="flex justify-between items-start mb-3 relative z-10">
+                                                    <h4 className="text-xl font-bold text-white group-hover:text-teal-300 transition-colors outfit-font">
                                                         {edu.degree}
                                                     </h4>
-                                                    <span className="text-xs font-medium px-2 py-1 rounded bg-slate-800 text-gray-400 border border-slate-700 whitespace-nowrap">
+                                                    <span className="text-xs font-semibold px-3 py-1.5 rounded-full bg-slate-900/80 text-teal-200 border border-white/10 whitespace-nowrap shadow-inner backdrop-blur-md">
                                                         {edu.year}
                                                     </span>
                                                 </div>
-                                                <p className={`${edu.color} font-medium mb-3`}>{edu.institution}</p>
-                                                <p className="text-gray-400 text-sm">
+                                                <p className={`${edu.color} font-medium mb-3 relative z-10 tracking-wide`}>{edu.institution}</p>
+                                                <p className="text-slate-400 text-sm font-light leading-relaxed">
                                                     {edu.description}
                                                 </p>
-                                            </div>
+                                            </motion.div>
                                         </Reveal>
                                     ))}
                                 </div>

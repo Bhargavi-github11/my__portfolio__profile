@@ -9,7 +9,7 @@ const Skills = () => {
         "Backend": ["Node.js", "Express.js", "REST API", "Python"],
         "Database": ["MongoDB", "SQL", "SQLite"],
         "AI": ["n8n Workflow Automation", "Prompt Engineering", "OpenAI API"],
-        "Tools & Others": ["Git", "GitHub", "Postman", "VS Code", "Project Management", "Problem Solving"]
+        "Tools & Others": ["Git", "GitHub", "Postman", "VS Code", "Project Management", "Problem Solving", "Vercel"]
     };
 
     return (
@@ -22,7 +22,7 @@ const Skills = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+                        <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center text-white outfit-font tracking-tight">
                             Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">Skills</span>
                         </h2>
 
@@ -30,19 +30,20 @@ const Skills = () => {
                             {Object.entries(skills).map(([category, items], index) => (
                                 <motion.div
                                     key={index}
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="bg-slate-900/50 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-teal-500/50 transition-colors"
+                                    initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                                    transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
+                                    className="glass-panel glass-panel-hover p-8 rounded-3xl relative overflow-hidden group h-full flex flex-col"
                                 >
-                                    <h3 className="text-xl font-bold mb-4 text-teal-400 border-b border-slate-700 pb-2">
-                                        {category}
+                                    <div className="absolute inset-0 bg-gradient-to-b from-teal-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-duration-500 pointer-events-none"></div>
+                                    <h3 className="text-2xl font-bold mb-6 text-white outfit-font border-b border-white/10 pb-4 relative z-10">
+                                        <span className="bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent">{category}</span>
                                     </h3>
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-2.5 relative z-10">
                                         {items.map((skill, i) => (
                                             <span
                                                 key={i}
-                                                className="px-3 py-1 bg-slate-700 rounded-full text-sm text-gray-200 hover:bg-teal-500/20 hover:text-teal-300 transition-colors cursor-default"
+                                                className="px-4 py-2 bg-white/5 border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] rounded-full text-sm font-medium text-slate-300 hover:text-teal-200 hover:bg-teal-500/20 hover:border-teal-400/30 transition-all duration-300 cursor-default"
                                             >
                                                 {skill}
                                             </span>

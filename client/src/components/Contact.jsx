@@ -21,7 +21,8 @@ const Contact = () => {
         e.preventDefault();
         setStatus('sending');
         try {
-            await axios.post('http://localhost:5000/api/contact', formData);
+            const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            await axios.post(`${apiUrl}/api/contact`, formData);
             setStatus('success');
             setFormData({ name: '', email: '', message: '' });
         } catch (error) {
@@ -58,7 +59,7 @@ const Contact = () => {
                                     <div className="bg-slate-800 p-3 rounded-full text-teal-400">
                                         <Mail size={24} />
                                     </div>
-                                    <span>kanchetibhargavi11@gmail.com</span>
+                                    <span>kanchetibharghavi11@gmail.com</span>
                                 </div>
                                 <div className="flex items-center space-x-4 text-gray-300">
                                     <div className="bg-slate-800 p-3 rounded-full text-teal-400">

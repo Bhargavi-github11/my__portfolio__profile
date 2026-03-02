@@ -25,6 +25,20 @@ const Projects = () => {
             tech: ["Project Management", "Planning"],
             link: "https://1drv.ms/p/c/8222116dd1e18764/EUS5vK0oIddBlh7vDGWfwXkBAFSeHCtnp-4mrC4dmPV56A?e=ODcU37",
             type: "Project Management"
+        },
+        {
+            title: "FrameFlix",
+            description: "A movie ticket booking application.",
+            tech: ["MERN Stack", "React", "Node.js", "Express", "MongoDB"],
+            link: "https://frameflix-rose.vercel.app/",
+            type: "Web Development"
+        },
+        {
+            title: "SpotiCone",
+            description: "A Spotify clone application for streaming latest music.",
+            tech: ["React", "Web Development"],
+            link: "https://spoti-clone-chi.vercel.app/",
+            type: "Web Development"
         }
     ];
 
@@ -38,7 +52,7 @@ const Projects = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-white">
+                        <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center text-white outfit-font tracking-tight">
                             My <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">Projects</span>
                         </h2>
 
@@ -48,39 +62,42 @@ const Projects = () => {
                                     key={index}
                                     initial={{ opacity: 0, y: 30 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: index * 0.2 }}
-                                    whileHover={{ y: -10 }}
-                                    className="group relative bg-slate-900/50 backdrop-blur-md rounded-xl overflow-hidden border border-white/10 hover:border-teal-500/50 transition-all duration-300 flex flex-col shadow-lg"
+                                    transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
+                                    whileHover={{ y: -8, scale: 1.02 }}
+                                    className="group relative glass-panel glass-panel-hover rounded-2xl overflow-hidden flex flex-col h-full"
                                 >
-                                    <div className="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                    <div className="p-6 flex-1 flex flex-col relative z-10">
-                                        <div className="flex justify-between items-start mb-4">
-                                            <div className="p-3 bg-slate-800 rounded-lg text-teal-400">
-                                                <Folder size={24} />
-                                            </div>
+                                    <div className="absolute inset-0 bg-gradient-to-br from-teal-500/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                                    <div className="p-8 flex-1 flex flex-col relative z-10">
+                                        <div className="flex justify-between items-start mb-6">
+                                            <motion.div
+                                                className="p-3.5 bg-white/5 border border-white/10 rounded-xl text-teal-400 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] group-hover:bg-teal-500/10 transition-colors duration-300"
+                                                whileHover={{ rotate: 5, scale: 1.1 }}
+                                            >
+                                                <Folder size={28} strokeWidth={1.5} />
+                                            </motion.div>
                                             <a
                                                 href={project.link}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-gray-400 hover:text-white transition-colors"
+                                                className="p-2 text-slate-400 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300"
                                             >
-                                                <ExternalLink size={20} />
+                                                <ExternalLink size={22} strokeWidth={1.5} />
                                             </a>
                                         </div>
 
-                                        <h3 className="text-xl font-bold mb-2 text-white group-hover:text-teal-400 transition-colors">
+                                        <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-teal-300 transition-colors outfit-font tracking-tight">
                                             {project.title}
                                         </h3>
 
-                                        <p className="text-gray-400 text-sm mb-4 flex-1">
+                                        <p className="text-slate-300/80 text-base leading-relaxed mb-6 flex-1 font-light">
                                             {project.description}
                                         </p>
 
-                                        <div className="flex flex-wrap gap-2 mt-auto">
+                                        <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-white/5">
                                             {project.tech.map((tech, i) => (
                                                 <span
                                                     key={i}
-                                                    className="text-xs font-medium px-2 py-1 rounded bg-slate-800 text-teal-300 border border-slate-700"
+                                                    className="text-xs font-medium px-3 py-1.5 rounded-full bg-white/5 text-teal-200 border border-white/10 backdrop-blur-sm"
                                                 >
                                                     {tech}
                                                 </span>

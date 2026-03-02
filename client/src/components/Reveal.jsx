@@ -42,7 +42,7 @@ const Reveal = ({ children, width = "fit-content" }) => {
                     bottom: 4,
                     left: 0,
                     right: 0,
-                    background: "#0d9488", // teal-600
+                    background: "linear-gradient(90deg, #2dd4bf, #3b82f6)", // teal-400 to blue-500
                     zIndex: 20,
                 }}
             />

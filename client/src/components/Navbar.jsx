@@ -17,39 +17,44 @@ const Navbar = () => {
 
     return (
         <nav className="fixed w-full z-50 transition-all duration-300">
-            <div className="backdrop-blur-md bg-slate-900/70 border-b border-white/10 shadow-lg">
+            <div className="glass-panel border-b-0 border-white/5 rounded-b-3xl mx-2 mt-2 md:mx-4 md:mt-4 shadow-xl">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-20">
-                        <Link to="/" className="relative group">
+                        <Link to="/" className="relative group flex items-center">
                             <motion.div
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                className="flex-shrink-0 font-bold text-2xl bg-gradient-to-r from-teal-400 via-blue-500 to-purple-600 bg-clip-text text-transparent cursor-pointer"
+                                className="flex-shrink-0 font-bold text-2xl tracking-tighter bg-gradient-to-r from-white via-teal-100 to-teal-400 bg-clip-text text-transparent cursor-pointer outfit-font"
                             >
                                 Bharghavi
                             </motion.div>
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-teal-400 to-blue-500 transition-all group-hover:w-full"></span>
+                            <motion.span
+                                className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-teal-400 to-blue-500 origin-left rounded-full"
+                                initial={{ scaleX: 0 }}
+                                whileHover={{ scaleX: 1 }}
+                                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                            />
                         </Link>
 
                         <div className="hidden md:block">
-                            <div className="ml-10 flex items-baseline space-x-6">
-                                {links.map((link, index) => {
+                            <div className="ml-10 flex items-baseline space-x-2">
+                                {links.map((link) => {
                                     const isActive = location.pathname === link.href;
                                     return (
                                         <Link
                                             key={link.name}
                                             to={link.href}
-                                            className="relative px-3 py-2 text-sm font-medium transition-colors group"
+                                            className="relative px-5 py-2.5 text-sm font-medium transition-colors group rounded-full"
                                         >
-                                            <span className={`relative z-10 ${isActive ? 'text-white' : 'text-gray-300 group-hover:text-white'}`}>
+                                            <span className={`relative z-10 transition-colors duration-300 ${isActive ? 'text-teal-300' : 'text-slate-300 group-hover:text-white'}`}>
                                                 {link.name}
                                             </span>
                                             {isActive && (
                                                 <motion.div
                                                     layoutId="navbar-indicator"
-                                                    className="absolute inset-0 bg-white/10 rounded-full"
+                                                    className="absolute inset-0 bg-white/5 rounded-full border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"
                                                     initial={false}
-                                                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
                                                 />
                                             )}
                                         </Link>
@@ -74,20 +79,21 @@ const Navbar = () => {
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-slate-900/95 backdrop-blur-xl border-b border-white/10 overflow-hidden"
+                        initial={{ opacity: 0, height: 0, y: -20 }}
+                        animate={{ opacity: 1, height: 'auto', y: 0 }}
+                        exit={{ opacity: 0, height: 0, y: -20 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="md:hidden absolute top-24 left-2 right-2 glass-panel rounded-2xl overflow-hidden border border-white/10 shadow-2xl z-40"
                     >
-                        <div className="px-4 pt-2 pb-6 space-y-2">
+                        <div className="px-4 py-4 space-y-2">
                             {links.map((link) => (
                                 <Link
                                     key={link.name}
                                     to={link.href}
                                     className={`${location.pathname === link.href
-                                        ? 'text-white bg-white/10'
-                                        : 'text-gray-300 hover:text-white hover:bg-white/5'
-                                        } block px-4 py-3 rounded-lg text-base font-medium transition-all`}
+                                        ? 'text-teal-300 bg-white/10 border border-white/5'
+                                        : 'text-slate-300 hover:text-white hover:bg-white/5'
+                                        } block px-4 py-3 rounded-xl text-base font-medium transition-all`}
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {link.name}
